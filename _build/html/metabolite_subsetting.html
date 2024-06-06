@@ -1,0 +1,1135 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Retrieving metabolite information &#8212; BioHackathon 2023 metabolite subsetting book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'metabolite_subsetting';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/bh-logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/bh-logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Retrieving metabolite information</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/NuriaQueralt/bh23-onlinebook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NuriaQueralt/bh23-onlinebook/issues/new?title=Issue%20on%20page%20%2Fmetabolite_subsetting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/metabolite_subsetting.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Retrieving metabolite information</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniprot">UniProt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-genome-druggability">Exploring genome druggability</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-drug-candidates-based-on-activity-metabolite-similarity-uniprot-rhea">Retrieving drug candidates based on activity metabolite similarity (UniProt, Rhea, …)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-drug-candidates-based-on-structural-metabolite-similariy">Retrieving drug candidates based on structural metabolite similariy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-dbcls-databases-for-ligands-and-druggability">Explore DBCLS databases for ligands and druggability.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-disease-pathology">Exploring disease pathology</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-of-curated-disease-metabolite-associations">Retrieval of curated disease-metabolite associations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-of-isoforms">Retrieval of isoforms</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-of-disease-enzymes-that-interact-with-cholestane-metabolite-substructure">Retrieval of disease enzymes that interact with Cholestane metabolite substructure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pubchem">PubChem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exploring disease pathology</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Retrieval of curated disease-metabolite associations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-databases">Other databases</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="retrieving-metabolite-information">
+<h1>Retrieving metabolite information<a class="headerlink" href="#retrieving-metabolite-information" title="Permalink to this heading">#</a></h1>
+<p>The addition of metabolite related information to biomedical knowledge graphs is gaining importance to describe and learn about genome druggability and disease pathology for several applications such as drug repurposing or disease biomarker discovery. In this BioHackathon, we have investigated how to retrieve metabolite associations from curated databases focusing on the specific use case of drug repurposing on inborn errors of metabolism disorders.</p>
+<section id="uniprot">
+<span id="id1"></span><h2>UniProt<a class="headerlink" href="#uniprot" title="Permalink to this heading">#</a></h2>
+<p>Here is a link <a class="reference internal" href="intro.html"><span class="doc std std-doc">to the intro</span></a>. Here is the link to <a class="reference internal" href="metabolite_subsetting_old.html#uniprot"><span class="std std-ref">UniProt</span></a> section. UniProt is a comprehensive knowledge base that focuses its metabolite content on natural products.</p>
+<p><a class="reference external" href="https://github.com/biosoda/tutorial_orthology/blob/master/Orthology_SPARQL_Notebook.ipynb">Example SPARQL notebook for SIB</a></p>
+<p><a class="reference external" href="https://github.com/LUMC-BioSemantics/bind/blob/main/queries/bind_wp_queries_model_v1.ipynb">Another example of SPARQL notebook for BIND</a></p>
+<section id="exploring-genome-druggability">
+<h3>Exploring genome druggability<a class="headerlink" href="#exploring-genome-druggability" title="Permalink to this heading">#</a></h3>
+<section id="retrieving-drug-candidates-based-on-activity-metabolite-similarity-uniprot-rhea">
+<h4>Retrieving drug candidates based on activity metabolite similarity (UniProt, Rhea, …)<a class="headerlink" href="#retrieving-drug-candidates-based-on-activity-metabolite-similarity-uniprot-rhea" title="Permalink to this heading">#</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>1. In UniProt, query for catalytic reactions (#39 + 40 at https://sparql.uniprot.org/.well-known/sparql-examples/) 
+</pre></div>
+</div>
+<p>First, retrieve all enzymes. Then the catalytic reaction and its accession ID. Then filter human enzymes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first imports to use SPARQL endpoints of each source and execute SPARQL queries</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">time</span>
+<span class="o">!{</span>sys.executable<span class="o">}</span> -m pip install SPARQLWrapper
+<span class="kn">from</span> <span class="nn">SPARQLWrapper</span> <span class="kn">import</span> <span class="n">SPARQLWrapper</span><span class="p">,</span> <span class="n">JSON</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># always display full column results (don&#39;t truncate output)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># define the endpoints as wrappers for executing SPARQL queries</span>
+<span class="n">sparql_uniprot</span> <span class="o">=</span> <span class="n">SPARQLWrapper</span><span class="p">(</span><span class="s2">&quot;https://sparql.uniprot.org/sparql&quot;</span><span class="p">)</span>
+
+<span class="c1"># function to print in a table results of a SPARQL query</span>
+<span class="k">def</span> <span class="nf">pretty_print</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+    
+    <span class="c1"># how to transform SPARQL results into Pandas dataframes</span>
+    
+    <span class="c1"># get header (column names) from results</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="s2">&quot;bindings&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+    <span class="c1"># display table of results:</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># the SPARQL JSON results to the query are available in the &quot;results&quot;, &quot;bindings&quot; entry:</span>
+    <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="s2">&quot;bindings&quot;</span><span class="p">]:</span>
+        <span class="c1"># append entries from the results to a regular Python list of rows, which we can then transform to a Pandas DF</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="n">entry</span><span class="p">[</span><span class="n">column</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">column</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">header</span><span class="p">]</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">header</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: SPARQLWrapper in /home/nur/anaconda3/lib/python3.10/site-packages (2.0.0)
+Requirement already satisfied: rdflib&gt;=6.1.1 in /home/nur/anaconda3/lib/python3.10/site-packages (from SPARQLWrapper) (6.3.2)
+Requirement already satisfied: pyparsing&lt;4,&gt;=2.1.0 in /home/nur/anaconda3/lib/python3.10/site-packages (from rdflib&gt;=6.1.1-&gt;SPARQLWrapper) (3.0.9)
+Requirement already satisfied: isodate&lt;0.7.0,&gt;=0.6.0 in /home/nur/anaconda3/lib/python3.10/site-packages (from rdflib&gt;=6.1.1-&gt;SPARQLWrapper) (0.6.1)
+Requirement already satisfied: six in /home/nur/anaconda3/lib/python3.10/site-packages (from isodate&lt;0.7.0,&gt;=0.6.0-&gt;rdflib&gt;=6.1.1-&gt;SPARQLWrapper) (1.16.0)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_100073/2559832190.py:8: FutureWarning: Passing a negative integer is deprecated in version 1.0 and will not be supported in future version. Instead, use None to not limit the column width.
+  pd.set_option(&#39;display.max_colwidth&#39;, -1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Queries in UniProt-RDF</span>
+<span class="c1"># Query for human enzymes and retrieve the catalytic reaction(s) IDs in Rhea</span>
+
+<span class="n">query_human_enzymes</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;</span>
+<span class="s2">PREFIX wikibase: &lt;http://wikiba.se/ontology#&gt;</span>
+<span class="s2">PREFIX wdt: &lt;http://www.wikidata.org/prop/direct/&gt;</span>
+<span class="s2">PREFIX wd: &lt;http://www.wikidata.org/entity/&gt;</span>
+<span class="s2">PREFIX vg: &lt;http://biohackathon.org/resource/vg#&gt;</span>
+<span class="s2">PREFIX up: &lt;http://purl.uniprot.org/core/&gt;</span>
+<span class="s2">PREFIX uniprotkb: &lt;http://purl.uniprot.org/uniprot/&gt;</span>
+<span class="s2">PREFIX uberon: &lt;http://purl.obolibrary.org/obo/uo#&gt;</span>
+<span class="s2">PREFIX taxon: &lt;http://purl.uniprot.org/taxonomy/&gt;</span>
+<span class="s2">PREFIX sp: &lt;http://spinrdf.org/sp#&gt;</span>
+<span class="s2">PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;</span>
+<span class="s2">PREFIX sio: &lt;http://semanticscience.org/resource/&gt;</span>
+<span class="s2">PREFIX sh: &lt;http://www.w3.org/ns/shacl#&gt;</span>
+<span class="s2">PREFIX schema: &lt;http://schema.org/&gt;</span>
+<span class="s2">PREFIX sachem: &lt;http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#&gt;</span>
+<span class="s2">PREFIX rh: &lt;http://rdf.rhea-db.org/&gt;</span>
+<span class="s2">PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span>
+<span class="s2">PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="s2">PREFIX pubmed: &lt;http://rdf.ncbi.nlm.nih.gov/pubmed/&gt;</span>
+<span class="s2">PREFIX ps: &lt;http://www.wikidata.org/prop/statement/&gt;</span>
+<span class="s2">PREFIX pq: &lt;http://www.wikidata.org/prop/qualifier/&gt;</span>
+<span class="s2">PREFIX patent: &lt;http://data.epo.org/linked-data/def/patent/&gt;</span>
+<span class="s2">PREFIX p: &lt;http://www.wikidata.org/prop/&gt;</span>
+<span class="s2">PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</span>
+<span class="s2">PREFIX orthodbGroup: &lt;http://purl.orthodb.org/odbgroup/&gt;</span>
+<span class="s2">PREFIX orthodb: &lt;http://purl.orthodb.org/&gt;</span>
+<span class="s2">PREFIX orth: &lt;http://purl.org/net/orth#&gt;</span>
+<span class="s2">PREFIX obo: &lt;http://purl.obolibrary.org/obo/&gt;</span>
+<span class="s2">PREFIX np: &lt;http://nextprot.org/rdf#&gt;</span>
+<span class="s2">PREFIX nextprot: &lt;http://nextprot.org/rdf/entry/&gt;</span>
+<span class="s2">PREFIX mnx: &lt;https://rdf.metanetx.org/schema/&gt;</span>
+<span class="s2">PREFIX mnet: &lt;https://rdf.metanetx.org/mnet/&gt;</span>
+<span class="s2">PREFIX mesh: &lt;http://id.nlm.nih.gov/mesh/&gt;</span>
+<span class="s2">PREFIX lscr: &lt;http://purl.org/lscr#&gt;</span>
+<span class="s2">PREFIX lipidmaps: &lt;https://www.lipidmaps.org/rdf/&gt;</span>
+<span class="s2">PREFIX keywords: &lt;http://purl.uniprot.org/keywords/&gt;</span>
+<span class="s2">PREFIX insdcschema: &lt;http://ddbj.nig.ac.jp/ontologies/nucleotide/&gt;</span>
+<span class="s2">PREFIX insdc: &lt;http://identifiers.org/insdc/&gt;</span>
+<span class="s2">PREFIX identifiers: &lt;http://identifiers.org/&gt;</span>
+<span class="s2">PREFIX glyconnect: &lt;https://purl.org/glyconnect/&gt;</span>
+<span class="s2">PREFIX glycan: &lt;http://purl.jp/bio/12/glyco/glycan#&gt;</span>
+<span class="s2">PREFIX genex: &lt;http://purl.org/genex#&gt;</span>
+<span class="s2">PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;</span>
+<span class="s2">PREFIX faldo: &lt;http://biohackathon.org/resource/faldo#&gt;</span>
+<span class="s2">PREFIX eunisSpecies: &lt;http://eunis.eea.europa.eu/rdf/species-schema.rdf#&gt;</span>
+<span class="s2">PREFIX ensembltranscript: &lt;http://rdf.ebi.ac.uk/resource/ensembl.transcript/&gt;</span>
+<span class="s2">PREFIX ensemblterms: &lt;http://rdf.ebi.ac.uk/terms/ensembl/&gt;</span>
+<span class="s2">PREFIX ensemblprotein: &lt;http://rdf.ebi.ac.uk/resource/ensembl.protein/&gt;</span>
+<span class="s2">PREFIX ensemblexon: &lt;http://rdf.ebi.ac.uk/resource/ensembl.exon/&gt;</span>
+<span class="s2">PREFIX ensembl: &lt;http://rdf.ebi.ac.uk/resource/ensembl/&gt;</span>
+<span class="s2">PREFIX ec: &lt;http://purl.uniprot.org/enzyme/&gt;</span>
+<span class="s2">PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;</span>
+<span class="s2">PREFIX dc: &lt;http://purl.org/dc/terms/&gt;</span>
+<span class="s2">PREFIX chebislash: &lt;http://purl.obolibrary.org/obo/chebi/&gt;</span>
+<span class="s2">PREFIX chebihash: &lt;http://purl.obolibrary.org/obo/chebi#&gt;</span>
+<span class="s2">PREFIX cco: &lt;http://rdf.ebi.ac.uk/terms/chembl#&gt;</span>
+<span class="s2">PREFIX busco: &lt;http://busco.ezlab.org/schema#&gt;</span>
+<span class="s2">PREFIX bibo: &lt;http://purl.org/ontology/bibo/&gt;</span>
+<span class="s2">PREFIX allie: &lt;http://allie.dbcls.jp/&gt;</span>
+<span class="s2">PREFIX SWISSLIPID: &lt;https://swisslipids.org/rdf/SLM_&gt;</span>
+<span class="s2">PREFIX GO: &lt;http://purl.obolibrary.org/obo/GO_&gt;</span>
+<span class="s2">PREFIX ECO: &lt;http://purl.obolibrary.org/obo/ECO_&gt;</span>
+<span class="s2">PREFIX CHEBI: &lt;http://purl.obolibrary.org/obo/CHEBI_&gt;</span>
+<span class="s2">SELECT DISTINCT </span>
+<span class="s2">  ?protein </span>
+<span class="s2">  ?rhea</span>
+<span class="s2">WHERE {</span>
+<span class="s2">  ?protein up:annotation/up:catalyticActivity/up:catalyzedReaction ?rhea ;</span>
+<span class="s2">    up:organism taxon:9606 .</span>
+<span class="s2">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the query to be executed against the UniProt endpoint and set the return format to JSON</span>
+<span class="n">sparql_uniprot</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="n">query_human_enzymes</span><span class="p">)</span>
+<span class="n">sparql_uniprot</span><span class="o">.</span><span class="n">setReturnFormat</span><span class="p">(</span><span class="n">JSON</span><span class="p">)</span>
+
+<span class="n">NUM_EXAMPLES</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">results_human_enzymes</span> <span class="o">=</span> <span class="n">sparql_uniprot</span><span class="o">.</span><span class="n">query</span><span class="p">()</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+<span class="n">pretty_print</span><span class="p">(</span><span class="n">results_human_enzymes</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">NUM_EXAMPLES</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">sparql_uniprot</span><span class="o">.</span><span class="n">setReturnFormat</span><span class="p">(</span><span class="n">JSON</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">NUM_EXAMPLES</span><span class="o">=</span><span class="mi">3</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">results_human_enzymes</span> <span class="o">=</span> <span class="n">sparql_uniprot</span><span class="o">.</span><span class="n">query</span><span class="p">()</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">pretty_print</span><span class="p">(</span><span class="n">results_human_enzymes</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">NUM_EXAMPLES</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.10/site-packages/SPARQLWrapper/Wrapper.py:1196,</span> in <span class="ni">QueryResult.convert</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1194</span> <span class="k">elif</span> <span class="n">_content_type_in_list</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">_SPARQL_JSON</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1195</span>     <span class="n">_validate_format</span><span class="p">(</span><span class="s2">&quot;JSON&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">JSON</span><span class="p">],</span> <span class="n">ct</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">requestedFormat</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1196</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convertJSON</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1197</span> <span class="k">elif</span> <span class="n">_content_type_in_list</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">_RDF_XML</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1198</span>     <span class="n">_validate_format</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1199</span>         <span class="s2">&quot;RDF/XML&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">RDF</span><span class="p">,</span> <span class="n">XML</span><span class="p">,</span> <span class="n">RDFXML</span><span class="p">],</span> <span class="n">ct</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">requestedFormat</span>
+<span class="g g-Whitespace">   </span><span class="mi">1200</span>     <span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.10/site-packages/SPARQLWrapper/Wrapper.py:1059,</span> in <span class="ni">QueryResult._convertJSON</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1051</span> <span class="k">def</span> <span class="nf">_convertJSON</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1052</span>     <span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1053</span><span class="sd">     Convert a JSON result into a Python dict. This method can be overwritten in a subclass</span>
+<span class="g g-Whitespace">   </span><span class="mi">1054</span><span class="sd">     for a different conversion method.</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1057</span><span class="sd">     :rtype: dict</span>
+<span class="g g-Whitespace">   </span><span class="mi">1058</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1059</span>     <span class="n">json_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">1060</span>     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">json_str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1061</span>         <span class="k">return</span> <span class="n">json_str</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.10/http/client.py:460,</span> in <span class="ni">HTTPResponse.read</span><span class="nt">(self, amt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">457</span>     <span class="k">return</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">chunked</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">460</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_chunked</span><span class="p">(</span><span class="n">amt</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">462</span> <span class="k">if</span> <span class="n">amt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">amt</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">464</span>         <span class="c1"># clip the read to the &quot;end of response&quot;</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.10/http/client.py:583,</span> in <span class="ni">HTTPResponse._read_chunked</span><span class="nt">(self, amt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">581</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">582</span>     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">583</span>         <span class="n">chunk_left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_chunk_left</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">584</span>         <span class="k">if</span> <span class="n">chunk_left</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">585</span>             <span class="k">break</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.10/http/client.py:566,</span> in <span class="ni">HTTPResponse._get_chunk_left</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">564</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_safe_read</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># toss the CRLF at the end of the chunk</span>
+<span class="g g-Whitespace">    </span><span class="mi">565</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">566</span>     <span class="n">chunk_left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_next_chunk_size</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">567</span> <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span>     <span class="k">raise</span> <span class="n">IncompleteRead</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.10/http/client.py:526,</span> in <span class="ni">HTTPResponse._read_next_chunk_size</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">524</span> <span class="k">def</span> <span class="nf">_read_next_chunk_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">525</span>     <span class="c1"># Read the next chunk size from the file</span>
+<span class="ne">--&gt; </span><span class="mi">526</span>     <span class="n">line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="n">_MAXLINE</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">527</span>     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">_MAXLINE</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">528</span>         <span class="k">raise</span> <span class="n">LineTooLong</span><span class="p">(</span><span class="s2">&quot;chunk size&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.10/socket.py:705,</span> in <span class="ni">SocketIO.readinto</span><span class="nt">(self, b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span> <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">705</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span>     <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_occurred</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.10/ssl.py:1307,</span> in <span class="ni">SSLSocket.recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1303</span>     <span class="k">if</span> <span class="n">flags</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1304</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1305</span>           <span class="s2">&quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+<span class="g g-Whitespace">   </span><span class="mi">1306</span>           <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1307</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1308</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1309</span>     <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
+
+<span class="nn">File ~/anaconda3/lib/python3.10/ssl.py:1163,</span> in <span class="ni">SSLSocket.read</span><span class="nt">(self, len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1161</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1162</span>     <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1163</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1164</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1165</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2. In RHEA, query for metabolites participating in catalytic reactions (#13)
+</pre></div>
+</div>
+<p>With this information query RHEA to retrieve reaction participants involved in metabolic pathways, and get the ChEBI IDs from both reactants and products. Then cross IDSM Sachem with these identifiers to expand these known compounds in ChEBI with similar compounds in PubChem. In PubChem we can retrieve three types of compounds: 1. known drugs that have protein targets with which have activity (useful for link prediction); 2. ChEMBL targets with known sensibility; 3. compounds with unknown relevance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Queries in UniProt-RDF</span>
+<span class="c1"># Query for human enzymes and retrieve the catalytic reaction(s) IDs in Rhea</span>
+<span class="c1"># Query Rhea for metabolites participating in catalytic reactions</span>
+
+<span class="n">query_metabolites</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;</span>
+<span class="s2">PREFIX wikibase: &lt;http://wikiba.se/ontology#&gt;</span>
+<span class="s2">PREFIX wdt: &lt;http://www.wikidata.org/prop/direct/&gt;</span>
+<span class="s2">PREFIX wd: &lt;http://www.wikidata.org/entity/&gt;</span>
+<span class="s2">PREFIX vg: &lt;http://biohackathon.org/resource/vg#&gt;</span>
+<span class="s2">PREFIX up: &lt;http://purl.uniprot.org/core/&gt;</span>
+<span class="s2">PREFIX uniprotkb: &lt;http://purl.uniprot.org/uniprot/&gt;</span>
+<span class="s2">PREFIX uberon: &lt;http://purl.obolibrary.org/obo/uo#&gt;</span>
+<span class="s2">PREFIX taxon: &lt;http://purl.uniprot.org/taxonomy/&gt;</span>
+<span class="s2">PREFIX sp: &lt;http://spinrdf.org/sp#&gt;</span>
+<span class="s2">PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;</span>
+<span class="s2">PREFIX sio: &lt;http://semanticscience.org/resource/&gt;</span>
+<span class="s2">PREFIX sh: &lt;http://www.w3.org/ns/shacl#&gt;</span>
+<span class="s2">PREFIX schema: &lt;http://schema.org/&gt;</span>
+<span class="s2">PREFIX sachem: &lt;http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#&gt;</span>
+<span class="s2">PREFIX rh: &lt;http://rdf.rhea-db.org/&gt;</span>
+<span class="s2">PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span>
+<span class="s2">PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="s2">PREFIX pubmed: &lt;http://rdf.ncbi.nlm.nih.gov/pubmed/&gt;</span>
+<span class="s2">PREFIX ps: &lt;http://www.wikidata.org/prop/statement/&gt;</span>
+<span class="s2">PREFIX pq: &lt;http://www.wikidata.org/prop/qualifier/&gt;</span>
+<span class="s2">PREFIX patent: &lt;http://data.epo.org/linked-data/def/patent/&gt;</span>
+<span class="s2">PREFIX p: &lt;http://www.wikidata.org/prop/&gt;</span>
+<span class="s2">PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</span>
+<span class="s2">PREFIX orthodbGroup: &lt;http://purl.orthodb.org/odbgroup/&gt;</span>
+<span class="s2">PREFIX orthodb: &lt;http://purl.orthodb.org/&gt;</span>
+<span class="s2">PREFIX orth: &lt;http://purl.org/net/orth#&gt;</span>
+<span class="s2">PREFIX obo: &lt;http://purl.obolibrary.org/obo/&gt;</span>
+<span class="s2">PREFIX np: &lt;http://nextprot.org/rdf#&gt;</span>
+<span class="s2">PREFIX nextprot: &lt;http://nextprot.org/rdf/entry/&gt;</span>
+<span class="s2">PREFIX mnx: &lt;https://rdf.metanetx.org/schema/&gt;</span>
+<span class="s2">PREFIX mnet: &lt;https://rdf.metanetx.org/mnet/&gt;</span>
+<span class="s2">PREFIX mesh: &lt;http://id.nlm.nih.gov/mesh/&gt;</span>
+<span class="s2">PREFIX lscr: &lt;http://purl.org/lscr#&gt;</span>
+<span class="s2">PREFIX lipidmaps: &lt;https://www.lipidmaps.org/rdf/&gt;</span>
+<span class="s2">PREFIX keywords: &lt;http://purl.uniprot.org/keywords/&gt;</span>
+<span class="s2">PREFIX insdcschema: &lt;http://ddbj.nig.ac.jp/ontologies/nucleotide/&gt;</span>
+<span class="s2">PREFIX insdc: &lt;http://identifiers.org/insdc/&gt;</span>
+<span class="s2">PREFIX identifiers: &lt;http://identifiers.org/&gt;</span>
+<span class="s2">PREFIX glyconnect: &lt;https://purl.org/glyconnect/&gt;</span>
+<span class="s2">PREFIX glycan: &lt;http://purl.jp/bio/12/glyco/glycan#&gt;</span>
+<span class="s2">PREFIX genex: &lt;http://purl.org/genex#&gt;</span>
+<span class="s2">PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;</span>
+<span class="s2">PREFIX faldo: &lt;http://biohackathon.org/resource/faldo#&gt;</span>
+<span class="s2">PREFIX eunisSpecies: &lt;http://eunis.eea.europa.eu/rdf/species-schema.rdf#&gt;</span>
+<span class="s2">PREFIX ensembltranscript: &lt;http://rdf.ebi.ac.uk/resource/ensembl.transcript/&gt;</span>
+<span class="s2">PREFIX ensemblterms: &lt;http://rdf.ebi.ac.uk/terms/ensembl/&gt;</span>
+<span class="s2">PREFIX ensemblprotein: &lt;http://rdf.ebi.ac.uk/resource/ensembl.protein/&gt;</span>
+<span class="s2">PREFIX ensemblexon: &lt;http://rdf.ebi.ac.uk/resource/ensembl.exon/&gt;</span>
+<span class="s2">PREFIX ensembl: &lt;http://rdf.ebi.ac.uk/resource/ensembl/&gt;</span>
+<span class="s2">PREFIX ec: &lt;http://purl.uniprot.org/enzyme/&gt;</span>
+<span class="s2">PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;</span>
+<span class="s2">PREFIX dc: &lt;http://purl.org/dc/terms/&gt;</span>
+<span class="s2">PREFIX chebislash: &lt;http://purl.obolibrary.org/obo/chebi/&gt;</span>
+<span class="s2">PREFIX chebihash: &lt;http://purl.obolibrary.org/obo/chebi#&gt;</span>
+<span class="s2">PREFIX cco: &lt;http://rdf.ebi.ac.uk/terms/chembl#&gt;</span>
+<span class="s2">PREFIX busco: &lt;http://busco.ezlab.org/schema#&gt;</span>
+<span class="s2">PREFIX bibo: &lt;http://purl.org/ontology/bibo/&gt;</span>
+<span class="s2">PREFIX allie: &lt;http://allie.dbcls.jp/&gt;</span>
+<span class="s2">PREFIX SWISSLIPID: &lt;https://swisslipids.org/rdf/SLM_&gt;</span>
+<span class="s2">PREFIX GO: &lt;http://purl.obolibrary.org/obo/GO_&gt;</span>
+<span class="s2">PREFIX ECO: &lt;http://purl.obolibrary.org/obo/ECO_&gt;</span>
+<span class="s2">PREFIX CHEBI: &lt;http://purl.obolibrary.org/obo/CHEBI_&gt;</span>
+<span class="s2">SELECT DISTINCT </span>
+<span class="s2">  ?protein </span>
+<span class="s2">  ?rhea</span>
+<span class="s2">  ?chebi</span>
+<span class="s2">WHERE {</span>
+<span class="s2">  ?protein up:annotation/up:catalyticActivity/up:catalyzedReaction ?rhea ;</span>
+<span class="s2">    up:organism taxon:9606 .</span>
+<span class="s2">  # Query Rhea for   </span>
+<span class="s2">  SERVICE &lt;https://sparql.rhea-db.org/sparql&gt; {</span>
+<span class="s2">        ?rhea rh:side/rh:contains/rh:compound/rdfs:subClassOf ?chebi .</span>
+<span class="s2">      }</span>
+<span class="s2">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the query to be executed against the UniProt endpoint and set the return format to JSON</span>
+<span class="n">sparql_uniprot</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="n">query_metabolites</span><span class="p">)</span>
+<span class="n">sparql_uniprot</span><span class="o">.</span><span class="n">setReturnFormat</span><span class="p">(</span><span class="n">JSON</span><span class="p">)</span>
+
+<span class="n">NUM_EXAMPLES</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">results_metabolites</span> <span class="o">=</span> <span class="n">sparql_uniprot</span><span class="o">.</span><span class="n">query</span><span class="p">()</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+<span class="n">pretty_print</span><span class="p">(</span><span class="n">results_metabolites</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">NUM_EXAMPLES</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>chebi</th>
+      <th>protein</th>
+      <th>rhea</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>http://rdf.rhea-db.org/SmallMolecule</td>
+      <td>http://purl.uniprot.org/uniprot/B2RB89</td>
+      <td>http://rdf.rhea-db.org/17989</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>http://purl.obolibrary.org/obo/CHEBI_30616</td>
+      <td>http://purl.uniprot.org/uniprot/B2RB89</td>
+      <td>http://rdf.rhea-db.org/17989</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>http://rdf.rhea-db.org/GenericPolypeptide</td>
+      <td>http://purl.uniprot.org/uniprot/B2RB89</td>
+      <td>http://rdf.rhea-db.org/17989</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="retrieving-drug-candidates-based-on-structural-metabolite-similariy">
+<h4>Retrieving drug candidates based on structural metabolite similariy<a class="headerlink" href="#retrieving-drug-candidates-based-on-structural-metabolite-similariy" title="Permalink to this heading">#</a></h4>
+<p>From our user metabolite drug candidates, retrieve similar ligands in PDB.</p>
+</section>
+<section id="explore-dbcls-databases-for-ligands-and-druggability">
+<h4>Explore DBCLS databases for ligands and druggability.<a class="headerlink" href="#explore-dbcls-databases-for-ligands-and-druggability" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+<section id="exploring-disease-pathology">
+<h3>Exploring disease pathology<a class="headerlink" href="#exploring-disease-pathology" title="Permalink to this heading">#</a></h3>
+<section id="retrieval-of-curated-disease-metabolite-associations">
+<h4>Retrieval of curated disease-metabolite associations<a class="headerlink" href="#retrieval-of-curated-disease-metabolite-associations" title="Permalink to this heading">#</a></h4>
+<p>From IMCD, retrieve a curated dataset of metabolite-disease associations. There is other the Recon models (Leiden) data source rich on this metabolite content.</p>
+</section>
+<section id="retrieval-of-isoforms">
+<h4>Retrieval of isoforms<a class="headerlink" href="#retrieval-of-isoforms" title="Permalink to this heading">#</a></h4>
+</section>
+<section id="retrieval-of-disease-enzymes-that-interact-with-cholestane-metabolite-substructure">
+<h4>Retrieval of disease enzymes that interact with Cholestane metabolite substructure<a class="headerlink" href="#retrieval-of-disease-enzymes-that-interact-with-cholestane-metabolite-substructure" title="Permalink to this heading">#</a></h4>
+<p><em>Author</em>: Jerven Bolleman, Principal Software Engineer at SIB</p>
+<p><em>Source</em>: <a class="reference external" href="https://www.linkedin.com/feed/update/activity:7171566017431724033/?trk=feed_main-feed-card_social-actions-comments">https://www.linkedin.com/feed/update/activity:7171566017431724033/?trk=feed_main-feed-card_social-actions-comments</a></p>
+<p>Here Bolleman et al. show the power of the combination of the IDSM (small molecules - <a class="reference external" href="https://lnkd.in/e2JWCd2e">https://lnkd.in/e2JWCd2e</a>) Rhea (<a class="reference external" href="https://lnkd.in/e93Pzuva">https://lnkd.in/e93Pzuva</a>) and UniProt (<a class="reference external" href="https://lnkd.in/emDE6CKi">https://lnkd.in/emDE6CKi</a>) SPARQL endpoints.</p>
+<p>In the following query we use these three independent #SPARQL endpoints.
+<a class="reference external" href="https://lnkd.in/ejXrwUH3">https://lnkd.in/ejXrwUH3</a></p>
+<p>Searching for all human #UniProtKB entries that are annotated to be involved in a disease that are enzymes catalyzing reactions where a substrate or product has Cholestane substructure.</p>
+<p>We only the #SMILES representation of a Cholestane (<a class="reference external" href="https://lnkd.in/e83mrQMr">https://lnkd.in/e83mrQMr</a>) to start the search.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># From UniProt, retrieve all human disease enzymes related to Cholestane metabolite</span>
+<span class="c1"># query (based on Jervern post on LinkedIn)</span>
+<span class="n">query_disease_enzymes_cholestane</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;</span>
+<span class="s2">    PREFIX wikibase: &lt;http://wikiba.se/ontology#&gt;</span>
+<span class="s2">    PREFIX wdt: &lt;http://www.wikidata.org/prop/direct/&gt;</span>
+<span class="s2">    PREFIX wd: &lt;http://www.wikidata.org/entity/&gt;</span>
+<span class="s2">    PREFIX vg: &lt;http://biohackathon.org/resource/vg#&gt;</span>
+<span class="s2">    PREFIX up: &lt;http://purl.uniprot.org/core/&gt;</span>
+<span class="s2">    PREFIX uniprotkb: &lt;http://purl.uniprot.org/uniprot/&gt;</span>
+<span class="s2">    PREFIX uberon: &lt;http://purl.obolibrary.org/obo/uo#&gt;</span>
+<span class="s2">    PREFIX taxon: &lt;http://purl.uniprot.org/taxonomy/&gt;</span>
+<span class="s2">    PREFIX sp: &lt;http://spinrdf.org/sp#&gt;</span>
+<span class="s2">    PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;</span>
+<span class="s2">    PREFIX sio: &lt;http://semanticscience.org/resource/&gt;</span>
+<span class="s2">    PREFIX sh: &lt;http://www.w3.org/ns/shacl#&gt;</span>
+<span class="s2">    PREFIX schema: &lt;http://schema.org/&gt;</span>
+<span class="s2">    PREFIX sachem: &lt;http://bioinfo.uochb.cas.cz/rdf/v1.0/sachem#&gt;</span>
+<span class="s2">    PREFIX rh: &lt;http://rdf.rhea-db.org/&gt;</span>
+<span class="s2">    PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span>
+<span class="s2">    PREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;</span>
+<span class="s2">    PREFIX pubmed: &lt;http://rdf.ncbi.nlm.nih.gov/pubmed/&gt;</span>
+<span class="s2">    PREFIX ps: &lt;http://www.wikidata.org/prop/statement/&gt;</span>
+<span class="s2">    PREFIX pq: &lt;http://www.wikidata.org/prop/qualifier/&gt;</span>
+<span class="s2">    PREFIX patent: &lt;http://data.epo.org/linked-data/def/patent/&gt;</span>
+<span class="s2">    PREFIX p: &lt;http://www.wikidata.org/prop/&gt;</span>
+<span class="s2">    PREFIX owl: &lt;http://www.w3.org/2002/07/owl#&gt;</span>
+<span class="s2">    PREFIX orthodbGroup: &lt;http://purl.orthodb.org/odbgroup/&gt;</span>
+<span class="s2">    PREFIX orthodb: &lt;http://purl.orthodb.org/&gt;</span>
+<span class="s2">    PREFIX orth: &lt;http://purl.org/net/orth#&gt;</span>
+<span class="s2">    PREFIX obo: &lt;http://purl.obolibrary.org/obo/&gt;</span>
+<span class="s2">    PREFIX np: &lt;http://nextprot.org/rdf#&gt;</span>
+<span class="s2">    PREFIX nextprot: &lt;http://nextprot.org/rdf/entry/&gt;</span>
+<span class="s2">    PREFIX mnx: &lt;https://rdf.metanetx.org/schema/&gt;</span>
+<span class="s2">    PREFIX mnet: &lt;https://rdf.metanetx.org/mnet/&gt;</span>
+<span class="s2">    PREFIX mesh: &lt;http://id.nlm.nih.gov/mesh/&gt;</span>
+<span class="s2">    PREFIX lscr: &lt;http://purl.org/lscr#&gt;</span>
+<span class="s2">    PREFIX lipidmaps: &lt;https://www.lipidmaps.org/rdf/&gt;</span>
+<span class="s2">    PREFIX keywords: &lt;http://purl.uniprot.org/keywords/&gt;</span>
+<span class="s2">    PREFIX insdcschema: &lt;http://ddbj.nig.ac.jp/ontologies/nucleotide/&gt;</span>
+<span class="s2">    PREFIX insdc: &lt;http://identifiers.org/insdc/&gt;</span>
+<span class="s2">    PREFIX identifiers: &lt;http://identifiers.org/&gt;</span>
+<span class="s2">    PREFIX glyconnect: &lt;https://purl.org/glyconnect/&gt;</span>
+<span class="s2">    PREFIX glycan: &lt;http://purl.jp/bio/12/glyco/glycan#&gt;</span>
+<span class="s2">    PREFIX genex: &lt;http://purl.org/genex#&gt;</span>
+<span class="s2">    PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;</span>
+<span class="s2">    PREFIX faldo: &lt;http://biohackathon.org/resource/faldo#&gt;</span>
+<span class="s2">    PREFIX eunisSpecies: &lt;http://eunis.eea.europa.eu/rdf/species-schema.rdf#&gt;</span>
+<span class="s2">    PREFIX ensembltranscript: &lt;http://rdf.ebi.ac.uk/resource/ensembl.transcript/&gt;</span>
+<span class="s2">    PREFIX ensemblterms: &lt;http://rdf.ebi.ac.uk/terms/ensembl/&gt;</span>
+<span class="s2">    PREFIX ensemblprotein: &lt;http://rdf.ebi.ac.uk/resource/ensembl.protein/&gt;</span>
+<span class="s2">    PREFIX ensemblexon: &lt;http://rdf.ebi.ac.uk/resource/ensembl.exon/&gt;</span>
+<span class="s2">    PREFIX ensembl: &lt;http://rdf.ebi.ac.uk/resource/ensembl/&gt;</span>
+<span class="s2">    PREFIX ec: &lt;http://purl.uniprot.org/enzyme/&gt;</span>
+<span class="s2">    PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;</span>
+<span class="s2">    PREFIX dc: &lt;http://purl.org/dc/terms/&gt;</span>
+<span class="s2">    PREFIX chebislash: &lt;http://purl.obolibrary.org/obo/chebi/&gt;</span>
+<span class="s2">    PREFIX chebihash: &lt;http://purl.obolibrary.org/obo/chebi#&gt;</span>
+<span class="s2">    PREFIX cco: &lt;http://rdf.ebi.ac.uk/terms/chembl#&gt;</span>
+<span class="s2">    PREFIX busco: &lt;http://busco.ezlab.org/schema#&gt;</span>
+<span class="s2">    PREFIX bibo: &lt;http://purl.org/ontology/bibo/&gt;</span>
+<span class="s2">    PREFIX allie: &lt;http://allie.dbcls.jp/&gt;</span>
+<span class="s2">    PREFIX SWISSLIPID: &lt;https://swisslipids.org/rdf/SLM_&gt;</span>
+<span class="s2">    PREFIX GO: &lt;http://purl.obolibrary.org/obo/GO_&gt;</span>
+<span class="s2">    PREFIX ECO: &lt;http://purl.obolibrary.org/obo/ECO_&gt;</span>
+<span class="s2">    PREFIX CHEBI: &lt;http://purl.obolibrary.org/obo/CHEBI_&gt;</span>
+<span class="s2">    SELECT DISTINCT </span>
+<span class="s2">      ?protein </span>
+<span class="s2">      ?disease</span>
+<span class="s2">      ?rhea</span>
+<span class="s2">      ?chebi</span>
+<span class="s2">      ?omim</span>
+<span class="s2">    WHERE {</span>
+<span class="s2">      # find complete ChEBIs with a Cholestane skeleton, via the Czech Elixir node IDSM Sachem </span>
+<span class="s2">      # chemical substructure search.</span>
+<span class="s2">      SERVICE &lt;https://idsm.elixir-czech.cz/sparql/endpoint/chebi&gt; {</span>
+<span class="s2">        ?chebi sachem:substructureSearch [</span>
+<span class="s2">            sachem:query</span>
+<span class="s2">            &quot;[H][C@@]1(CC[C@@]2([H])[C@]3([H])CCC4CCCC[C@]4(C)[C@@]3([H])CC[C@]12C)[C@H](C)CCCC(C)C&quot;</span>
+<span class="s2">        ] .</span>
+<span class="s2">      }</span>
+<span class="s2">      # Use the fact that UniProt catalytic activities are annotated using Rhea</span>
+<span class="s2">      # Mapping the found ChEBIs o Rhea reactions</span>
+<span class="s2">      SERVICE &lt;https://sparql.rhea-db.org/sparql&gt; {</span>
+<span class="s2">        ?rhea rh:side/rh:contains/rh:compound/rdfs:subClassOf ?chebi .</span>
+<span class="s2">      }</span>
+<span class="s2">      # Match the found Rhea reactions with human UniProtKB proteins</span>
+<span class="s2">      ?protein up:annotation/up:catalyticActivity/up:catalyzedReaction ?rhea ;</span>
+<span class="s2">         up:organism taxon:9606 .</span>
+<span class="s2">      # Find only those human entries that have an annotated related disease, and optionally </span>
+<span class="s2">      # map these to OMIM</span>
+<span class="s2">      ?protein up:annotation/up:disease ?disease .</span>
+<span class="s2">      OPTIONAL {</span>
+<span class="s2">            ?disease rdfs:seeAlso ?omim .</span>
+<span class="s2">            ?omim up:database &lt;http://purl.uniprot.org/database/MIM&gt; </span>
+<span class="s2">      }</span>
+<span class="s2">    } </span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the query to be executed against the UniProt endpoint and set the return format to JSON</span>
+<span class="n">sparql_uniprot</span><span class="o">.</span><span class="n">setQuery</span><span class="p">(</span><span class="n">query_disease_enzymes_cholestane</span><span class="p">)</span>
+<span class="n">sparql_uniprot</span><span class="o">.</span><span class="n">setReturnFormat</span><span class="p">(</span><span class="n">JSON</span><span class="p">)</span>
+
+<span class="n">NUM_EXAMPLES</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">results_disease_enzymes</span> <span class="o">=</span> <span class="n">sparql_uniprot</span><span class="o">.</span><span class="n">query</span><span class="p">()</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+<span class="n">pretty_print</span><span class="p">(</span><span class="n">results_disease_enzymes</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">NUM_EXAMPLES</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>disease</th>
+      <th>chebi</th>
+      <th>omim</th>
+      <th>protein</th>
+      <th>rhea</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>http://purl.uniprot.org/diseases/330</td>
+      <td>http://purl.obolibrary.org/obo/CHEBI_2288</td>
+      <td>http://purl.uniprot.org/mim/235555</td>
+      <td>http://purl.uniprot.org/uniprot/P51857</td>
+      <td>http://rdf.rhea-db.org/46632</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>http://purl.uniprot.org/diseases/330</td>
+      <td>http://purl.obolibrary.org/obo/CHEBI_2290</td>
+      <td>http://purl.uniprot.org/mim/235555</td>
+      <td>http://purl.uniprot.org/uniprot/P51857</td>
+      <td>http://rdf.rhea-db.org/46640</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>http://purl.uniprot.org/diseases/330</td>
+      <td>http://purl.obolibrary.org/obo/CHEBI_16074</td>
+      <td>http://purl.uniprot.org/mim/235555</td>
+      <td>http://purl.uniprot.org/uniprot/P51857</td>
+      <td>http://rdf.rhea-db.org/11524</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+<section id="pubchem">
+<span id="id2"></span><h2>PubChem<a class="headerlink" href="#pubchem" title="Permalink to this heading">#</a></h2>
+<p>Here is a link <a class="reference internal" href="intro.html"><span class="doc std std-doc">to the intro</span></a>. Here is the link to <a class="reference internal" href="metabolite_subsetting_old.html#pubchem"><span class="std std-ref">PubChem</span></a> section. PubChem is a comprehensive knowledge base that focuses its metabolite content on several curated databases such as HMDB. The large amount of data and complexity of PubChem structure make the retrieval of information tailored to the user use case. Once this is clear, PubChem offers a set of tools to help users to retrieve this information in a more systematic way.</p>
+<section id="id3">
+<h3>Exploring disease pathology<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<section id="id4">
+<h4>Retrieval of curated disease-metabolite associations<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h4>
+<p>Subset human metabolites from HMDB and cross this data via JOIN or UNION with ChEBI (metabolite role).</p>
+</section>
+</section>
+</section>
+<section id="other-databases">
+<h2>Other databases<a class="headerlink" href="#other-databases" title="Permalink to this heading">#</a></h2>
+<p>We also asked the Plant and Microbiome communities, if there are other databases used to retrieve metabolite-related data. The plant community is focusing mainly on sequence and phenomic data for now. The microbiome community is using KEGG (enzyme sequence list of each microbe).
+MS data: they don’t know that much about MS databases for microbes. Maybe no standard database. They usually obtain metabolomics data using mass spectrometry such as GC-MS, LC-MS, CE-TOF/MS, etc. Also, “metabolite-related” data also includes metabolic pathways and enzymes and the reactions they are involved in; for pathways, KEGG or MetaCyc would work, and for predicting enzymes, DeepGO or a similar system.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniprot">UniProt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-genome-druggability">Exploring genome druggability</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-drug-candidates-based-on-activity-metabolite-similarity-uniprot-rhea">Retrieving drug candidates based on activity metabolite similarity (UniProt, Rhea, …)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-drug-candidates-based-on-structural-metabolite-similariy">Retrieving drug candidates based on structural metabolite similariy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#explore-dbcls-databases-for-ligands-and-druggability">Explore DBCLS databases for ligands and druggability.</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-disease-pathology">Exploring disease pathology</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-of-curated-disease-metabolite-associations">Retrieval of curated disease-metabolite associations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-of-isoforms">Retrieval of isoforms</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-of-disease-enzymes-that-interact-with-cholestane-metabolite-substructure">Retrieval of disease enzymes that interact with Cholestane metabolite substructure</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pubchem">PubChem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Exploring disease pathology</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Retrieval of curated disease-metabolite associations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-databases">Other databases</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The BioHackathon Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
