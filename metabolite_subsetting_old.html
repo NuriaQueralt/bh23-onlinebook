@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Notebooks with MyST Markdown &#8212; BioHackathon 2023 metabolite subsetting book</title>
+    <title>Retrieving metabolite information &#8212; BioHackathon 2023 metabolite subsetting book</title>
   
   
   
@@ -61,7 +61,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'markdown-notebooks';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'metabolite_subsetting_old';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -227,7 +227,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/NuriaQueralt/bh23-onlinebook/issues/new?title=Issue%20on%20page%20%2Fmarkdown-notebooks.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/NuriaQueralt/bh23-onlinebook/issues/new?title=Issue%20on%20page%20%2Fmetabolite_subsetting_old.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -257,7 +257,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/markdown-notebooks.md" target="_blank"
+      <li><a href="_sources/metabolite_subsetting_old.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -339,7 +339,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Notebooks with MyST Markdown</h1>
+    <h1>Retrieving metabolite information</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -349,9 +349,28 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniprot">UniProt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-genome-druggability">Exploring genome druggability</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-drug-candidates-based-on-activity-metabolite-similarity">Retrieving drug candidates based on activity metabolite similarity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-drug-candidates-based-on-structural-metabolite-similariy">Retrieving drug candidates based on structural metabolite similariy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-disease-pathology">Exploring disease pathology</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-of-curated-disease-metabolite-associations">Retrieval of curated disease-metabolite associations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-of-isoforms">Retrieval of isoforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pubchem">PubChem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Exploring disease pathology</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Retrieval of curated disease-metabolite associations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-databases">Other databases</a></li>
 </ul>
             </nav>
         </div>
@@ -363,50 +382,53 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="notebooks-with-myst-markdown">
-<h1>Notebooks with MyST Markdown<a class="headerlink" href="#notebooks-with-myst-markdown" title="Permalink to this heading">#</a></h1>
-<p>Jupyter Book also lets you write text-based notebooks using MyST Markdown.
-See <a class="reference external" href="https://jupyterbook.org/file-types/myst-notebooks.html">the Notebooks with MyST Markdown documentation</a> for more detailed instructions.
-This page shows off a notebook written in MyST Markdown.</p>
-<section id="an-example-cell">
-<h2>An example cell<a class="headerlink" href="#an-example-cell" title="Permalink to this heading">#</a></h2>
-<p>With MyST Markdown, you can define code cells with a directive like so:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-</div>
-</div>
-<p>When your book is built, the contents of any <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> blocks will be
-executed with your default Jupyter kernel, and their outputs will be displayed
-in-line with the rest of your content.</p>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Jupyter Book uses <a class="reference external" href="https://jupytext.readthedocs.io/en/latest/">Jupytext</a> to convert text-based files to notebooks, and can support <a class="reference external" href="https://jupyterbook.org/file-types/jupytext.html">many other text-based notebook files</a>.</p>
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="retrieving-metabolite-information">
+<h1>Retrieving metabolite information<a class="headerlink" href="#retrieving-metabolite-information" title="Permalink to this heading">#</a></h1>
+<p>The addition of metabolite related information to biomedical knowledge graphs is gaining importance to describe and learn about genome druggability and disease pathology for several applications such as drug repurposing or disease biomarker discovery. In this BioHackathon, we have investigated how to retrieve metabolite associations from curated databases focusing on the specific use case of drug repurposing on inborn errors of metabolism disorders.</p>
+<section id="uniprot">
+<span id="id1"></span><h2>UniProt<a class="headerlink" href="#uniprot" title="Permalink to this heading">#</a></h2>
+<p>Here is a link <a class="reference internal" href="intro.html"><span class="doc std std-doc">to the intro</span></a>. Here is the link to <a class="reference internal" href="#uniprot"><span class="std std-ref">UniProt</span></a> section. UniProt is a comprehensive knowledge base that focuses its metabolite content on natural products.</p>
+<section id="exploring-genome-druggability">
+<h3>Exploring genome druggability<a class="headerlink" href="#exploring-genome-druggability" title="Permalink to this heading">#</a></h3>
+<section id="retrieving-drug-candidates-based-on-activity-metabolite-similarity">
+<h4>Retrieving drug candidates based on activity metabolite similarity<a class="headerlink" href="#retrieving-drug-candidates-based-on-activity-metabolite-similarity" title="Permalink to this heading">#</a></h4>
+<p>From UniProt, retrieve all human enzymes. Then the catalytic reaction and its accession ID. With this information query RHEA to retrieve reaction participants involved in metabolic pathways, and get the ChEBI IDs from both reactants and products. Then cross IDSM Sachem with these identifiers to expand these known compounds in ChEBI with similar compounds in PubChem. In PubChem we can retrieve three types of compounds: 1. known drugs that have protein targets with which have activity (useful for link prediction); 2. ChEMBL targets with known sensibility; 3. compounds with unknown relevance.</p>
 </section>
-<section id="create-a-notebook-with-myst-markdown">
-<h2>Create a notebook with MyST Markdown<a class="headerlink" href="#create-a-notebook-with-myst-markdown" title="Permalink to this heading">#</a></h2>
-<p>MyST Markdown notebooks are defined by two things:</p>
-<ol class="arabic simple">
-<li><p>YAML metadata that is needed to understand if / how it should convert text files to notebooks (including information about the kernel needed).
-See the YAML at the top of this page for example.</p></li>
-<li><p>The presence of <code class="docutils literal notranslate"><span class="pre">{code-cell}</span></code> directives, which will be executed with your book.</p></li>
-</ol>
-<p>That’s all that is needed to get started!</p>
+<section id="retrieving-drug-candidates-based-on-structural-metabolite-similariy">
+<h4>Retrieving drug candidates based on structural metabolite similariy<a class="headerlink" href="#retrieving-drug-candidates-based-on-structural-metabolite-similariy" title="Permalink to this heading">#</a></h4>
+<p>From our user metabolite drug candidates, retrieve similar ligands in PDB.</p>
 </section>
-<section id="quickly-add-yaml-metadata-for-myst-notebooks">
-<h2>Quickly add YAML metadata for MyST Notebooks<a class="headerlink" href="#quickly-add-yaml-metadata-for-myst-notebooks" title="Permalink to this heading">#</a></h2>
-<p>If you have a markdown file and you’d like to quickly add YAML metadata to it, so that Jupyter Book will treat it as a MyST Markdown Notebook, run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span><span class="o">-</span><span class="n">book</span> <span class="n">myst</span> <span class="n">init</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">markdownfile</span><span class="o">.</span><span class="n">md</span>
-</pre></div>
-</div>
+<section id="id2">
+<h4><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<p>Explore DBCLS databases for ligands and druggability.</p>
+</section>
+</section>
+<section id="exploring-disease-pathology">
+<h3>Exploring disease pathology<a class="headerlink" href="#exploring-disease-pathology" title="Permalink to this heading">#</a></h3>
+<section id="retrieval-of-curated-disease-metabolite-associations">
+<h4>Retrieval of curated disease-metabolite associations<a class="headerlink" href="#retrieval-of-curated-disease-metabolite-associations" title="Permalink to this heading">#</a></h4>
+<p>From IMCD, retrieve a curated dataset of metabolite-disease associations. There is other the Recon models (Leiden) data source rich on this metabolite content.</p>
+</section>
+<section id="retrieval-of-isoforms">
+<h4>Retrieval of isoforms<a class="headerlink" href="#retrieval-of-isoforms" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="pubchem">
+<span id="id3"></span><h2>PubChem<a class="headerlink" href="#pubchem" title="Permalink to this heading">#</a></h2>
+<p>Here is a link <a class="reference internal" href="intro.html"><span class="doc std std-doc">to the intro</span></a>. Here is the link to <a class="reference internal" href="#pubchem"><span class="std std-ref">PubChem</span></a> section. PubChem is a comprehensive knowledge base that focuses its metabolite content on several curated databases such as HMDB. The large amount of data and complexity of PubChem structure make the retrieval of information tailored to the user use case. Once this is clear, PubChem offers a set of tools to help users to retrieve this information in a more systematic way.</p>
+<section id="id4">
+<h3>Exploring disease pathology<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<section id="id5">
+<h4>Retrieval of curated disease-metabolite associations<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h4>
+<p>Subset human metabolites from HMDB and cross this data via JOIN or UNION with ChEBI (metabolite role).</p>
+</section>
+</section>
+</section>
+<section id="other-databases">
+<h2>Other databases<a class="headerlink" href="#other-databases" title="Permalink to this heading">#</a></h2>
+<p>We also asked the Plant and Microbiome communities, if there are other databases used to retrieve metabolite-related data. The plant community is focusing mainly on sequence and phenomic data for now. The microbiome community is using KEGG (enzyme sequence list of each microbe).
+MS data: they don’t know that much about MS databases for microbes. Maybe no standard database. They usually obtain metabolomics data using mass spectrometry such as GC-MS, LC-MS, CE-TOF/MS, etc. Also, “metabolite-related” data also includes metabolic pathways and enzymes and the reactions they are involved in; for pathways, KEGG or MetaCyc would work, and for predicting enzymes, DeepGO or a similar system.</p>
 </section>
 </section>
 
@@ -459,9 +481,28 @@ See the YAML at the top of this page for example.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-example-cell">An example cell</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-a-notebook-with-myst-markdown">Create a notebook with MyST Markdown</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quickly-add-yaml-metadata-for-myst-notebooks">Quickly add YAML metadata for MyST Notebooks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uniprot">UniProt</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-genome-druggability">Exploring genome druggability</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-drug-candidates-based-on-activity-metabolite-similarity">Retrieving drug candidates based on activity metabolite similarity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieving-drug-candidates-based-on-structural-metabolite-similariy">Retrieving drug candidates based on structural metabolite similariy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-disease-pathology">Exploring disease pathology</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-of-curated-disease-metabolite-associations">Retrieval of curated disease-metabolite associations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#retrieval-of-isoforms">Retrieval of isoforms</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pubchem">PubChem</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Exploring disease pathology</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Retrieval of curated disease-metabolite associations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-databases">Other databases</a></li>
 </ul>
   </nav></div>
 
